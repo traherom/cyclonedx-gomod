@@ -1,10 +1,9 @@
-module github.com/traherom/cyclonedx-gomod
+module github.com/CycloneDX/cyclonedx-gomod
 
 go 1.23.1
 
 require (
 	github.com/CycloneDX/cyclonedx-go v0.9.1
-	github.com/CycloneDX/cyclonedx-gomod v0.0.0-00010101000000-000000000000
 	github.com/bradleyjkemp/cupaloy/v2 v2.8.0
 	github.com/go-enry/go-license-detector/v4 v4.3.0
 	github.com/go-git/go-git/v5 v5.12.0
@@ -61,4 +60,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/CycloneDX/cyclonedx-gomod => github.com/traherom/cyclonedx-gomod v0.0.0-20241031180509-f8a6ab861d5a
+replace github.com/CycloneDX/cyclonedx-gomod => github.com/traherom/cyclonedx-gomod v0.0.0-20241024093931-e54760d8f6a1
