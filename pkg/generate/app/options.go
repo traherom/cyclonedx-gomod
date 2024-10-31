@@ -88,3 +88,18 @@ func WithMainDir(dir string) Option {
 		return nil
 	}
 }
+
+// WithVersionOverride overrides the version of the main component.
+//
+// This is useful in cases where a BOM is generated from development-
+// or snapshot-builds, in which case Go will set the version of the main
+// module to "(devel)". Because "(devel)" is very generic and not a valid semver,
+// overriding it may be useful.
+//
+// For analyzing release builds, this option should be avoided.
+func WithVersionOverride(version string) Option {
+	return func(g *generator) error {
+		g.versionOverride = version
+		return nil
+	}
+}

@@ -46,6 +46,7 @@ type generator struct {
 	licenseDetector licensedetect.Detector
 	mainDir         string
 	moduleDir       string
+	versionOverride string
 }
 
 func NewGenerator(moduleDir string, opts ...Option) (generate.Generator, error) {
@@ -90,9 +91,13 @@ func (g generator) Generate() (*cdx.BOM, error) {
 		return nil, fmt.Errorf("failed to apply module graph: %w", err)
 	}
 
-	modules[0].Version, err = gomod.GetModuleVersion(g.logger, modules[0].Dir)
-	if err != nil {
-		return nil, fmt.Errorf("failed to determine version of main module: %w", err)
+	if g.versionOverride != "" {
+		modules[0].Version = g.versionOverride
+	} else {
+		modules[0].Version, err = gomod.GetModuleVersion(g.logger, modules[0].Dir)
+		if err != nil {
+			return nil, fmt.Errorf("failed to determine version of main module: %w", err)
+		}
 	}
 
 	mainComponent, err := modConv.ToComponent(g.logger, modules[0],
